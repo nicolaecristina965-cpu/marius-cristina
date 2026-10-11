@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7eee1">
+<title>Marius & Cristina — 21 august 2027</title>
+<style>
+:root{--cream:#fbf5eb;--ivory:#f4e7d5;--gold:#a87535;--gold2:#d5b17b;--ink:#56381f;--soft:#fffaf3}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+button,a{font:inherit}
+a{color:inherit}
+.hero{min-height:100svh;display:grid;place-items:center;padding:26px 16px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 20%,#fffdf8 0,#f7ead8 48%,#e9d1b0 100%)}
+.hero:before,.hero:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #d8b98755;border-radius:50%;pointer-events:none}
+.hero:before{top:-120px;left:-90px}.hero:after{right:-120px;bottom:-120px}
+.envelope-wrap{width:min(100%,390px);text-align:center;z-index:1}
+.eyebrow{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:#95672f}
+.envelope{position:relative;width:100%;aspect-ratio:1.35/1;margin:24px auto 20px;perspective:1000px;cursor:pointer;filter:drop-shadow(0 18px 20px #8a65301c)}
+.envelope-back{position:absolute;inset:0;background:linear-gradient(145deg,#fffaf1,#ead7bb);border:1px solid #d8bd91;border-radius:5px}
+.letter{position:absolute;left:8%;right:8%;bottom:7%;height:83%;background:#fffaf2;border:1px solid #e3cfac;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;transition:transform 1s ease,bottom 1s ease;z-index:1}
+.letter .initials{font-size:2.5rem;letter-spacing:.13em;color:#a87535}
+.letter small{letter-spacing:.15em;text-transform:uppercase;font-size:.65rem;margin-top:8px}
+.flap{position:absolute;inset:0;background:linear-gradient(145deg,#fffaf1,#efdfc7);clip-path:polygon(0 0,100% 0,50% 66%);border-top:1px solid #ddc49b;transform-origin:top;transition:transform .9s ease;z-index:3}
+.envelope-front{position:absolute;inset:0;background:linear-gradient(30deg,#f2e1c8cc,#fff8edaa);clip-path:polygon(0 100%,0 0,50% 58%,100% 0,100% 100%);z-index:2;border-bottom:1px solid #d8bd91}
+.seal{position:absolute;z-index:4;top:48%;left:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 28%,#e8c77f,#ad762e 62%,#84531d);color:#fff5d8;border:3px double #f4dba3;box-shadow:0 4px 9px #704b1f55;transition:opacity .35s,transform .6s}
+.seal span{font-size:1.25rem;font-style:italic}
+.envelope.open .flap{transform:rotateX(180deg);z-index:0}
+.envelope.open .letter{transform:translateY(-34%);bottom:13%}
+.envelope.open .seal{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+.tap{font-size:.9rem;color:#7c5b36;letter-spacing:.03em}
+.tap:before{content:"♡";display:block;font-size:1.35rem;margin-bottom:6px;color:#b38a50}
+.hero-title{font-size:clamp(2.3rem,9vw,4.2rem);line-height:1.08;font-weight:400;font-style:italic;margin:12px 0;color:#99682e}
+.hero-date{letter-spacing:.28em;font-size:.82rem;margin:20px 0 0}
+.content{max-width:700px;margin:auto;padding:64px 22px}
+.section{padding:38px 0;text-align:center;border-bottom:1px solid #d9bf9855}
+.kicker{font-size:.7rem;text-transform:uppercase;letter-spacing:.22em;color:#a47a43}
+h2{font-size:1.8rem;font-weight:400;margin:12px 0 18px}
+p{line-height:1.75}
+.names{font-size:clamp(2rem,8vw,3.2rem);font-style:italic;color:#a87535;line-height:1.3}
+.ornament{color:#bd955e;letter-spacing:.35em;margin:16px 0}
+.detail-card{background:#fffaf3;border:1px solid #e6d2b1;border-radius:18px;padding:24px 18px;margin:14px 0;box-shadow:0 7px 24px #8e673012}
+.detail-card h3{font-size:1.05rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;margin:5px 0 12px}
+.time{color:#a87535;letter-spacing:.12em;font-size:.82rem}
+.pill{display:inline-block;border:1px solid #b78a4d;border-radius:999px;padding:11px 18px;text-decoration:none;margin:8px 4px;color:#805522;background:#fffaf3;transition:background .2s}
+.pill:hover{background:#f2e3cc}
+.primary{background:linear-gradient(120deg,#b27b36,#d2ad70);color:white;border-color:#b27b36}
+.verse{font-size:1.25rem;font-style:italic;line-height:1.8}
+.footer{background:linear-gradient(160deg,#ead5b6,#fbf3e7);text-align:center;padding:54px 20px 70px}
+.footer .names{font-size:2.2rem}
+.small{font-size:.82rem;color:#856543}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+.music-control{position:fixed;right:16px;bottom:16px;z-index:20;display:flex;align-items:center;gap:9px;border:1px solid #c6a36e;border-radius:999px;padding:11px 15px;background:#fffaf3ee;color:#805522;box-shadow:0 5px 20px #704b1f20;cursor:pointer;font-size:.82rem;backdrop-filter:blur(8px)}
+.music-control .music-icon{font-size:1.05rem}
+.music-control:focus-visible{outline:2px solid #a87535;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;transition:none!important}}
+</style>
+</head>
+<body>
+<button class="music-control" id="musicToggle" type="button" aria-pressed="false" aria-label="Pornește muzica romantică"><span class="music-icon" id="musicIcon">♫</span><span id="musicLabel">Pornește muzica</span></button>
+<header class="hero" id="top">
+  <div class="envelope-wrap">
+    <div class="eyebrow">O invitație din inimă</div>
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Deschide invitația">
+      <div class="envelope-back"></div>
+      <div class="letter"><div class="initials">M & C</div><small>Cu dragoste, vă invităm</small></div>
+      <div class="flap"></div><div class="envelope-front"></div>
+      <div class="seal"><span>M&amp;C</span></div>
+    </div>
+    <div class="tap" id="taptext">Atinge sigiliul pentru a deschide invitația</div>
+    <div id="heroNames" hidden>
+      <div class="hero-title">Marius & Cristina</div>
+      <div class="ornament">— ♡ —</div>
+      <div class="hero-date">21 AUGUST 2027</div>
+      <a class="pill" href="#invitation">Descoperă invitația ↓</a>
+    </div>
+  </div>
+</header>
+<main id="invitation" class="content">
+  <section class="section reveal">
+    <div class="kicker">Cu binecuvântarea lui Dumnezeu</div>
+    <div class="names">Marius & Cristina</div>
+    <div class="ornament">— ♡ —</div>
+    <p>Cu bucurie în suflet, vă invităm să ne fiți alături în ziua în care vom începe împreună un nou capitol al poveștii noastre.</p>
+    <h2>21 august 2027</h2>
+  </section>
+  <section class="section reveal">
+    <div class="kicker">Programul evenimentului</div><h2>O zi specială</h2>
+    <div class="detail-card">
+      <h3>✧ Cununia religioasă ✧</h3>
+      <p><strong>Catedrala Sfânta Treime</strong><br>Corabia, România</p>
+      <a class="pill" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Catedrala+Sfanta+Treime+Corabia">Vezi locația</a>
+      <p class="small">Ora va fi confirmată.</p>
+    </div>
+    <div class="detail-card">
+      <h3>✧ Petrecerea ✧</h3>
+      <p><strong>Restaurant Noblesse</strong><br>Corabia, România</p>
+      <div class="time">ORA 19:00</div>
+      <a class="pill" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Restaurant+Noblesse+Corabia">Vezi locația</a>
+    </div>
+  </section>
+  <section class="section reveal">
+    <div class="kicker">Cu familiile noastre</div><h2>Alături de noi</h2>
+    <div class="detail-card"><p class="small">Nașii</p><p><strong>Gicuța & Larisa</strong></p></div>
+    <div class="detail-card"><p class="small">Socrii mari</p><p><strong>Vica & Claudia</strong></p></div>
+    <div class="detail-card"><p class="small">Socrii mici</p><p><strong>Traian & Gabi</strong></p></div>
+  </section>
+  <section class="section reveal">
+    <div class="kicker">Cuvântul care ne călăuzește</div><h2>Versetul nostru</h2>
+    <div class="ornament">♡</div>
+    <p class="verse">„Dumnezeu este dragoste; și cine rămâne în dragoste rămâne în Dumnezeu, și Dumnezeu rămâne în el.”</p>
+    <p class="small">1 Ioan 4:16</p>
+  </section>
+  <section class="section reveal">
+    <div class="kicker">Prezența voastră ne-ar bucura</div><h2>Confirmați prezența</h2>
+    <p>Vă rugăm să ne confirmați dacă veți putea fi alături de noi până la <strong>1 august 2027</strong>.</p>
+    <a class="pill primary" target="_blank" rel="noopener" href="https://wa.me/447770106973?text=Bun%C4%83%21%20Confirm%20prezen%C8%9Ba%20la%20nunta%20lui%20Marius%20%C8%99i%20Cristina%2C%2021%20august%202027.">♡ Confirmă pe WhatsApp</a>
+    <p class="small">Dacă numărul de contact trebuie schimbat, acesta poate fi actualizat înainte de publicare.</p>
+  </section>
+</main>
+<footer class="footer">
+  <div class="names">Marius & Cristina</div>
+  <div class="hero-date">21 AUGUST 2027</div>
+  <div class="ornament">— ♡ —</div>
+  <p>Vă mulțumim că faceți parte din povestea noastră!</p>
+  <a class="pill" href="#top">Înapoi sus ↑</a>
+</footer>
+<script>
+const envelope=document.getElementById('envelope');
+const musicToggle=document.getElementById('musicToggle');
+const musicLabel=document.getElementById('musicLabel');
+const musicIcon=document.getElementById('musicIcon');
+let audioContext=null, masterGain=null, musicTimer=null, musicOn=false, noteIndex=0;
+// Melodie originală, discretă, generată în browser; nu necesită fișier audio extern.
+const melody=[
+  [261.63,392.00,523.25],[293.66,440.00,587.33],[329.63,493.88,659.25],[392.00,523.25,783.99],
+  [349.23,440.00,698.46],[329.63,493.88,659.25],[293.66,440.00,587.33],[261.63,392.00,523.25],
+  [220.00,329.63,440.00],[261.63,392.00,523.25],[293.66,349.23,587.33],[261.63,392.00,523.25]
+];
+function playSoftNote(frequency, start, duration){
+  const partials=[{ratio:1,level:.60},{ratio:2,level:.18},{ratio:3,level:.07}];
+  partials.forEach(partial=>{
+    const osc=audioContext.createOscillator();
+    const gain=audioContext.createGain();
+    osc.type='sine'; osc.frequency.setValueAtTime(frequency*partial.ratio,start);
+    gain.gain.setValueAtTime(.0001,start);
+    gain.gain.exponentialRampToValueAtTime(Math.max(.0002,partial.level),start+.012);
+    gain.gain.exponentialRampToValueAtTime(.0001,start+duration);
+    osc.connect(gain); gain.connect(masterGain); osc.start(start); osc.stop(start+duration+.03);
+  });
+}
+function schedulePhrase(){
+  if(!musicOn||!audioContext) return;
+  const chord=melody[noteIndex%melody.length];
+  const now=audioContext.currentTime;
+  playSoftNote(chord[0],now,.95);
+  playSoftNote(chord[1],now+.08,1.1);
+  playSoftNote(chord[2],now+.16,1.25);
+  // Note înalte rare, pentru o atmosferă delicată de pian.
+  if(noteIndex%2===0) playSoftNote(chord[2]*2,now+.55,.55);
+  noteIndex++;
+  musicTimer=setTimeout(schedulePhrase,1450);
+}
+async function startMusic(){
+  const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContextClass) return;
+  if(!audioContext){audioContext=new AudioContextClass();masterGain=audioContext.createGain();masterGain.gain.value=.11;masterGain.connect(audioContext.destination);}
+  await audioContext.resume();
+  if(musicOn) return;
+  musicOn=true; musicToggle.setAttribute('aria-pressed','true');
+  musicToggle.setAttribute('aria-label','Oprește muzica romantică');
+  musicLabel.textContent='Oprește muzica'; musicIcon.textContent='Ⅱ';
+  schedulePhrase();
+}
+function stopMusic(){
+  musicOn=false;clearTimeout(musicTimer);musicTimer=null;
+  if(masterGain&&audioContext){masterGain.gain.cancelScheduledValues(audioContext.currentTime);masterGain.gain.setTargetAtTime(.0001,audioContext.currentTime,.08);setTimeout(()=>{if(!musicOn&&masterGain&&audioContext){masterGain.gain.setTargetAtTime(.11,audioContext.currentTime,.12);}},220);}
+  musicToggle.setAttribute('aria-pressed','false');musicToggle.setAttribute('aria-label','Pornește muzica romantică');
+  musicLabel.textContent='Pornește muzica';musicIcon.textContent='♫';
+}
+function openInvite(){
+  if(envelope.classList.contains('open')) return;
+  envelope.classList.add('open');
+  document.getElementById('taptext').textContent='Cu dragoste, Marius & Cristina';
+  setTimeout(()=>{document.getElementById('heroNames').hidden=false;},650);
+  startMusic().catch(()=>{musicLabel.textContent='Pornește muzica';});
+}
+envelope.addEventListener('click',openInvite);
+envelope.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openInvite();}});
+musicToggle.addEventListener('click',()=>{if(musicOn)stopMusic();else startMusic().catch(()=>{});});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
